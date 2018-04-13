@@ -83,6 +83,7 @@ public class PizzeriaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("@@initialize");
 //        Precios precios = pizza.getPrecios();
 //
 //        choiceTipo.setItems(FXCollections.observableArrayList(precios.tiposTipo()));
@@ -97,7 +98,8 @@ public class PizzeriaController implements Initializable {
 //        choiceTipo.setValue("Básica");
     }
 
-    public void inicializarPostPrecios() {
+    public void nombresYvaloresPorDefecto() {
+        System.out.println("@@nombresYvaloresPorDefecto");
         Precios precios = pizza.getPrecios();
 
         choiceTipo.setItems(FXCollections.observableArrayList(precios.tiposTipo()));
@@ -112,7 +114,8 @@ public class PizzeriaController implements Initializable {
         choiceTipo.setValue("Básica");
     }
 
-    private void pedidoPorDefecto() {
+    private void calcularPedidoPorDefecto() {
+        System.out.println("@@calcularPedidoPorDefecto");
         masa();
         tamaño();
         ingredientes();
@@ -129,6 +132,7 @@ public class PizzeriaController implements Initializable {
 
     private void masa() {
         String masa = ((RadioButton) grupoRadiosMasa.getSelectedToggle()).getText();
+        System.out.println("M"+masa);
         pizza.setMasa(masa);
     }
 
@@ -150,6 +154,7 @@ public class PizzeriaController implements Initializable {
     }
 
     private void ingredientes() {
+        System.out.println("@@PizzeriaController.ingredientes");
         Set<String> ingredientesExtra = new HashSet<>();
 
         for (String ingrediente : listViewIngredientes.getSelectionModel().getSelectedItems()) {
@@ -158,7 +163,9 @@ public class PizzeriaController implements Initializable {
         
         System.out.println("ingredientes extra cogida datos: " + ingredientesExtra);
 
+        System.out.println("@@ pre setIngredientesExtra, pizza.getIngredientesExtra() -> " + pizza.getIngredientesExtra());
         pizza.setIngredientesExtra(ingredientesExtra);
+        System.out.println("@@ post setIngredientesExtra, pizza.getIngredientesExtra() -> " + pizza.getIngredientesExtra());
     }
 
     @FXML
@@ -174,6 +181,7 @@ public class PizzeriaController implements Initializable {
     }
 
     private void mostrarActualizarPedido() {
+        System.out.println("@@mostrarActualizarPedido");
         textareaPedido.setText(pizza.composicion());
     }
 
@@ -205,22 +213,23 @@ public class PizzeriaController implements Initializable {
         // establecer como directorio inicial la carpeta actual del proyecto -> datos -> precios
         selectorArchivo.setInitialDirectory(new File(".\\datos\\precios"));
 
-        try {
+        //try {
             archivoSeleccionado = selectorArchivo.showOpenDialog(null).toPath();
             pizza.cargaPrecios(archivoSeleccionado);
-            
-            inicializarPostPrecios();
 
             // ocultar aviso
             panePreciosSinCargar.setVisible(false);
             // cargar pedido por defecto, ahora que tenemos los precios
-            pedidoPorDefecto();
-        } catch (Exception e) {
+                        
+            nombresYvaloresPorDefecto();
+            
+            calcularPedidoPorDefecto();
+        /*} catch (Exception e) {
             if (e.getMessage() == null) {
                 System.err.println("El usuario pulsó en Cancelar o el archivo pasado no es válido");
             } else {
                 System.err.println(e.getMessage());
             }
-        }
+        }*/
     }
 }
