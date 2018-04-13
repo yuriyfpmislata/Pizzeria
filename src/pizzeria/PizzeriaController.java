@@ -82,9 +82,9 @@ public class PizzeriaController implements Initializable {
     private Rectangle rectanglePanelUsuario;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {        
         Precios precios = pizza.getPrecios();
-
+        
         choiceTipo.setItems(FXCollections.observableArrayList(precios.tiposTipo()));
         listViewIngredientes.setItems(FXCollections.observableArrayList(precios.tiposIngrediente()));
         listViewIngredientes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -95,6 +95,7 @@ public class PizzeriaController implements Initializable {
         // valores por defecto 
         radioNormal.setSelected(true);
         choiceTipo.setValue("Básica");
+        
     }
 
     public void nombresYvaloresPorDefecto() {
@@ -103,7 +104,7 @@ public class PizzeriaController implements Initializable {
         choiceTipo.setItems(FXCollections.observableArrayList(precios.tiposTipo()));
         listViewIngredientes.setItems(FXCollections.observableArrayList(precios.tiposIngrediente()));
         listViewIngredientes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
+        System.out.println(precios.tiposTipo());
         ListSpinnerValueFactory<String> factoryTamaños = new ListSpinnerValueFactory(FXCollections.observableArrayList(precios.tiposTamaño()));
         spinnerTamaño.setValueFactory(factoryTamaños);
 
@@ -195,6 +196,7 @@ public class PizzeriaController implements Initializable {
 
     @FXML
     private void cargarPrecios(MouseEvent event) {
+        pizza = new Pizza();
         Path archivoSeleccionado;
         FileChooser selectorArchivo = new FileChooser();
         selectorArchivo.setTitle("Archivo de precios");
@@ -211,7 +213,7 @@ public class PizzeriaController implements Initializable {
             panePreciosSinCargar.setVisible(false);
             // cargar pedido por defecto, ahora que tenemos los precios
                         
-            nombresYvaloresPorDefecto();
+            //nombresYvaloresPorDefecto();
             
             calcularPedidoPorDefecto();
         } catch (Exception e) {

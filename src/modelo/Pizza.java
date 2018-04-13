@@ -22,7 +22,7 @@ public class Pizza {
     private Set<String> ingredientesExtra;
     private String tamaño;
 
-    private Precios precios;
+    private Precios precios = new Precios();
 
     public Pizza() {
     }
