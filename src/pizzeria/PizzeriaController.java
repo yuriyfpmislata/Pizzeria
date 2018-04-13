@@ -83,27 +83,11 @@ public class PizzeriaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("@@@ PizzeriaController.initialize");
-        
-        Precios precios = pizza.getPrecios();
-        
-        choiceTipo.setItems(FXCollections.observableArrayList(precios.tiposTipo()));
-        listViewIngredientes.setItems(FXCollections.observableArrayList(precios.tiposIngrediente()));
-        listViewIngredientes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-        ListSpinnerValueFactory<String> factoryTamaños = new ListSpinnerValueFactory(FXCollections.observableArrayList(precios.tiposTamaño()));
-        spinnerTamaño.setValueFactory(factoryTamaños);
-
-        // valores por defecto 
-        radioNormal.setSelected(true);
-        choiceTipo.setValue("Básica");
-               
     }
 
     public void nombresYvaloresPorDefecto() {
-        System.out.println("@@@ PizzeriaController.nombresYvaloresPorDefecto");
         Precios precios = pizza.getPrecios();
-        
+
         choiceTipo.setItems(FXCollections.observableArrayList(precios.tiposTipo()));
         listViewIngredientes.setItems(FXCollections.observableArrayList(precios.tiposIngrediente()));
         listViewIngredientes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -113,17 +97,19 @@ public class PizzeriaController implements Initializable {
 
         // valores por defecto 
         radioNormal.setSelected(true);
-        choiceTipo.setValue("Básica");
     }
 
     private void calcularPedidoPorDefecto() {
-        System.out.println("@@@ PizzeriaController.calcularPedidoPorDefecto");
         masa();
         tamaño();
         ingredientes();
-        tipo();
-
-        mostrarActualizarPedido();
+        
+        /*
+        Workaround para el bug que hace que setValue haga saltar onAction del ComboBox, haciendo que se recalcule el precio.
+        Al ser el ultimo, las partes anteriores ya se han seteado en pizza, por lo que es seguro hacerlo.
+        (realmente debería ir en nombreYvaloresPorDefecto)
+        */        
+        choiceTipo.setValue("Básica");
     }
 
     @FXML
@@ -133,7 +119,6 @@ public class PizzeriaController implements Initializable {
     }
 
     private void masa() {
-        System.out.println("@@@ PizzeriaController.masa");
         String masa = ((RadioButton) grupoRadiosMasa.getSelectedToggle()).getText();
         pizza.setMasa(masa);
     }
@@ -145,7 +130,6 @@ public class PizzeriaController implements Initializable {
     }
 
     public void tamaño() {
-        System.out.println("@@@ PizzeriaController.tamaño");
         String tamaño = spinnerTamaño.getValue();
         pizza.setTamaño(tamaño);
     }
@@ -157,13 +141,12 @@ public class PizzeriaController implements Initializable {
     }
 
     private void ingredientes() {
-        System.out.println("@@@ PizzeriaController.ingredientes");
         Set<String> ingredientesExtra = new HashSet<>();
 
         for (String ingrediente : listViewIngredientes.getSelectionModel().getSelectedItems()) {
             ingredientesExtra.add(ingrediente);
         }
-        
+
         pizza.setIngredientesExtra(ingredientesExtra);
     }
 
@@ -174,14 +157,12 @@ public class PizzeriaController implements Initializable {
     }
 
     private void tipo() {
-        System.out.println("@@@ PizzeriaController.tipo");
         String tipo = choiceTipo.getValue();
         pizza.setTipo(tipo);
 
     }
 
     private void mostrarActualizarPedido() {
-        System.out.println("@@@ PizzeriaController.mostrarActualizarPedido");
         textareaPedido.setText(pizza.composicion());
     }
 
@@ -205,7 +186,6 @@ public class PizzeriaController implements Initializable {
 
     @FXML
     private void cargarPrecios(MouseEvent event) {
-        System.out.println("@@@ PizzeriaController.cargarPrecios");
         Path archivoSeleccionado;
         FileChooser selectorArchivo = new FileChooser();
         selectorArchivo.setTitle("Archivo de precios");
@@ -221,9 +201,9 @@ public class PizzeriaController implements Initializable {
             // ocultar aviso
             panePreciosSinCargar.setVisible(false);
             // cargar pedido por defecto, ahora que tenemos los precios
-                        
-            //nombresYvaloresPorDefecto();
-            
+
+            nombresYvaloresPorDefecto();
+
             calcularPedidoPorDefecto();
         } catch (Exception e) {
             if (e.getMessage() == null) {

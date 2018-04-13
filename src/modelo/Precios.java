@@ -12,6 +12,7 @@ public class Precios {
     private Map<String, Double> tamaño = new HashMap<>();
 
     public Precios() {
+        /*
         this.masa.put("Normal", 9.00);
         this.masa.put("Integral", 9.50);
 
@@ -29,6 +30,7 @@ public class Precios {
         this.tamaño.put("Pequeña", 0.00);
         this.tamaño.put("Mediana", 15.00);
         this.tamaño.put("Familiar", 30.00);
+*/
     }
 
     public Precios(
@@ -38,16 +40,10 @@ public class Precios {
             Map<String, Double> tamaño
     ) {
         
-        System.out.println("construyendo nuevos precios");
         this.masa = masa;
         this.tipo = tipo;
         this.ingrediente = ingrediente;
         this.tamaño = tamaño;
-        
-        System.out.println("nuevo masa:" + this.masa);
-        System.out.println("nuevo tipo:" + this.tipo);
-        System.out.println("nuevo ingrediente:" + this.ingrediente);
-        System.out.println("nuevo tamaño:" + this.tamaño);
     }
 
     public Double precioDeMasa(String masa) {
