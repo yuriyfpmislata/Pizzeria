@@ -75,12 +75,15 @@ public class Pizza {
     }
 
     public Double calcularPrecio() {
+        System.out.println("@@@ Pizza.calcularPrecio");
         Double precioTotal = 0.00;
 
+        System.out.println("this.masa: " + this.masa);
         Double precioMasa = precios.precioDeMasa(this.masa);
-        Double precioTipo = precios.precioDeTipo(this.tipo);
-        Double porcentajeTamaño = precios.porcentajeDeTamaño(this.tamaño);
-        Double precioIngredientes = precios.precioDeIngredientes(this.ingredientesExtra);
+        System.out.println("precioMasa: " + precioMasa);
+        Double precioTipo = 0d/*precios.precioDeTipo(this.tipo)*/;
+        Double porcentajeTamaño = 0d/*precios.porcentajeDeTamaño(this.tamaño)*/;
+        Double precioIngredientes = 0d/*precios.precioDeIngredientes(this.ingredientesExtra)*/;
 
         precioTotal = (precioMasa + precioTipo + precioIngredientes);
         precioTotal += (precioTotal * (porcentajeTamaño / 100));
@@ -89,6 +92,7 @@ public class Pizza {
     }
 
     public String composicion() {
+        System.out.println("@@@ Pizza.composicion");
         String cadena = "";
         Double precioTotal = 0.00;
 

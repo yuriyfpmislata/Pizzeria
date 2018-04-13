@@ -82,7 +82,9 @@ public class PizzeriaController implements Initializable {
     private Rectangle rectanglePanelUsuario;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {        
+    public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("@@@ PizzeriaController.initialize");
+        
         Precios precios = pizza.getPrecios();
         
         choiceTipo.setItems(FXCollections.observableArrayList(precios.tiposTipo()));
@@ -95,15 +97,17 @@ public class PizzeriaController implements Initializable {
         // valores por defecto 
         radioNormal.setSelected(true);
         choiceTipo.setValue("Básica");
-        
+               
     }
 
     public void nombresYvaloresPorDefecto() {
+        System.out.println("@@@ PizzeriaController.nombresYvaloresPorDefecto");
         Precios precios = pizza.getPrecios();
-
+        
         choiceTipo.setItems(FXCollections.observableArrayList(precios.tiposTipo()));
         listViewIngredientes.setItems(FXCollections.observableArrayList(precios.tiposIngrediente()));
         listViewIngredientes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         ListSpinnerValueFactory<String> factoryTamaños = new ListSpinnerValueFactory(FXCollections.observableArrayList(precios.tiposTamaño()));
         spinnerTamaño.setValueFactory(factoryTamaños);
 
@@ -113,6 +117,7 @@ public class PizzeriaController implements Initializable {
     }
 
     private void calcularPedidoPorDefecto() {
+        System.out.println("@@@ PizzeriaController.calcularPedidoPorDefecto");
         masa();
         tamaño();
         ingredientes();
@@ -128,6 +133,7 @@ public class PizzeriaController implements Initializable {
     }
 
     private void masa() {
+        System.out.println("@@@ PizzeriaController.masa");
         String masa = ((RadioButton) grupoRadiosMasa.getSelectedToggle()).getText();
         pizza.setMasa(masa);
     }
@@ -139,6 +145,7 @@ public class PizzeriaController implements Initializable {
     }
 
     public void tamaño() {
+        System.out.println("@@@ PizzeriaController.tamaño");
         String tamaño = spinnerTamaño.getValue();
         pizza.setTamaño(tamaño);
     }
@@ -150,6 +157,7 @@ public class PizzeriaController implements Initializable {
     }
 
     private void ingredientes() {
+        System.out.println("@@@ PizzeriaController.ingredientes");
         Set<String> ingredientesExtra = new HashSet<>();
 
         for (String ingrediente : listViewIngredientes.getSelectionModel().getSelectedItems()) {
@@ -166,12 +174,14 @@ public class PizzeriaController implements Initializable {
     }
 
     private void tipo() {
+        System.out.println("@@@ PizzeriaController.tipo");
         String tipo = choiceTipo.getValue();
         pizza.setTipo(tipo);
 
     }
 
     private void mostrarActualizarPedido() {
+        System.out.println("@@@ PizzeriaController.mostrarActualizarPedido");
         textareaPedido.setText(pizza.composicion());
     }
 
@@ -195,6 +205,7 @@ public class PizzeriaController implements Initializable {
 
     @FXML
     private void cargarPrecios(MouseEvent event) {
+        System.out.println("@@@ PizzeriaController.cargarPrecios");
         Path archivoSeleccionado;
         FileChooser selectorArchivo = new FileChooser();
         selectorArchivo.setTitle("Archivo de precios");
