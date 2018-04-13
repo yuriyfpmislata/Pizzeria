@@ -1,0 +1,18 @@
+@MASA
+Normal:90
+Integral:90.50
+@TIPO
+Básica:30
+Cuatro quesos:50
+Barbacoa:70
+Mexicana:80.50
+@INGREDIENTE
+Jamón:10.5
+Queso:10.75
+Tomate:20.5
+Cebolla:30.5
+Olivas:20
+@TAMAÑO
+Pequeña:0
+Mediana:50
+Familiar:100
