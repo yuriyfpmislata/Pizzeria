@@ -10,7 +10,6 @@ import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -26,18 +25,15 @@ public class Pizza {
     private Precios precios;
 
     public Pizza() {
-        this.ingredientesExtra = new HashSet<String>();
-        this.ingredientesExtra.add("SIN INGREDIENTES");
     }
 
-    /*
     public Pizza(String masa, String tipo, Set<String> ingredientesExtra, String tamaño) {
         this.masa = masa;
         this.tipo = tipo;
         this.ingredientesExtra = ingredientesExtra;
         this.tamaño = tamaño;
     }
-     */
+
     public String getMasa() {
         return masa;
     }
@@ -85,16 +81,7 @@ public class Pizza {
         Double precioTipo = precios.precioDeTipo(this.tipo);
         Double porcentajeTamaño = precios.porcentajeDeTamaño(this.tamaño);
         Double precioIngredientes = precios.precioDeIngredientes(this.ingredientesExtra);
-        System.out.println("PRECIOS " + String.valueOf(precioMasa) //null
-                + " " + String.valueOf(precioTipo)
-                + " " + String.valueOf(porcentajeTamaño)// null
-                + " " + String.valueOf(precioIngredientes));
-        if (precioMasa == null) {
-            precioMasa = 0.0;
-        }
-        if (porcentajeTamaño == null) {
-            porcentajeTamaño = 0.0;
-        }
+
         precioTotal = (precioMasa + precioTipo + precioIngredientes);
         precioTotal += (precioTotal * (porcentajeTamaño / 100));
 
@@ -102,14 +89,8 @@ public class Pizza {
     }
 
     public String composicion() {
-        System.out.println("@@composicion");
         String cadena = "";
         Double precioTotal = 0.00;
-
-        if (this.ingredientesExtra.isEmpty()) {
-            this.ingredientesExtra.add("SIN INGREDIENTES");
-        }
-        System.out.println("this.ingredientesExtra: " + this.ingredientesExtra);
 
         Double precioMasa = precios.precioDeMasa(this.masa);
         Double precioTipo = precios.precioDeTipo(this.tipo);
@@ -127,7 +108,7 @@ public class Pizza {
         cadena += "TAMAÑO: " + this.tamaño + " - " + porcentajeTamaño + "%";
         cadena += "\n";
         cadena += "TOTAL: " + String.format("%.2f", precioTotal) + "€";
-        System.out.println("acaba compo nasi");
+
         return cadena;
     }
 
@@ -146,13 +127,10 @@ public class Pizza {
     }
 
     public void cargaPrecios(Path ruta) {
-        System.out.println("@@ COMIENZA cargaPrecios");
         Map<String, Double> masa = new HashMap<>();
         Map<String, Double> tipo = new HashMap<>();
         Map<String, Double> ingredientesExtra = new HashMap<>();
         Map<String, Double> tamaño = new HashMap<>();
-
-        ingredientesExtra.put("SIN INGREDIENTES", 0.0);
 
         try (Stream<String> datos = Files.lines(ruta)) {
             Iterator<String> it = datos.iterator();
@@ -198,6 +176,5 @@ public class Pizza {
         } catch (IOException ex) {
             System.out.println("Error en la lectura");
         }
-        System.out.println("@@ ACABA cargaPrecios");
     }
 }

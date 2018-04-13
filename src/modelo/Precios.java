@@ -53,11 +53,11 @@ public class Precios {
 
     public Double precioDeIngredientes(Set<String> ingredientesAsumar) {
         Double precioIngredientes = 0.00;
-        System.out.println("PRECIO");
+        
         for (String ingrediente : ingredientesAsumar) {
             precioIngredientes += this.ingrediente.get(ingrediente);
         }
-System.out.println("PRECIO");
+        
         return precioIngredientes;
     }
 
