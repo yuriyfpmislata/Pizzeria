@@ -104,7 +104,6 @@ public class PizzeriaController implements Initializable {
         choiceTipo.setItems(FXCollections.observableArrayList(precios.tiposTipo()));
         listViewIngredientes.setItems(FXCollections.observableArrayList(precios.tiposIngrediente()));
         listViewIngredientes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        System.out.println(precios.tiposTipo());
         ListSpinnerValueFactory<String> factoryTamaños = new ListSpinnerValueFactory(FXCollections.observableArrayList(precios.tiposTamaño()));
         spinnerTamaño.setValueFactory(factoryTamaños);
 
@@ -196,7 +195,6 @@ public class PizzeriaController implements Initializable {
 
     @FXML
     private void cargarPrecios(MouseEvent event) {
-        pizza = new Pizza();
         Path archivoSeleccionado;
         FileChooser selectorArchivo = new FileChooser();
         selectorArchivo.setTitle("Archivo de precios");
