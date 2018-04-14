@@ -22,10 +22,9 @@ public class Pizza {
     private Set<String> ingredientesExtra;
     private String tamaño;
 
-    private Precios precios = new Precios();
+    private Precios precios;
 
-    public Pizza() {
-    }
+    public Pizza() {}
 
     public Pizza(String masa, String tipo, Set<String> ingredientesExtra, String tamaño) {
         this.masa = masa;
