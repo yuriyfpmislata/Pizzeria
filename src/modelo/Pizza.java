@@ -121,7 +121,7 @@ public class Pizza {
         try (BufferedWriter bw = Files.newBufferedWriter(rutaArchivo, StandardCharsets.UTF_8, StandardOpenOption.CREATE_NEW)) {
             bw.write(this.composicion());
         } catch (IOException ex) {
-            System.err.println("Error al escribir pedido a archivo: " + ex);
+            throw new RuntimeException("Error al escribir pedido a archivo: " + ex);
         }
     }
 

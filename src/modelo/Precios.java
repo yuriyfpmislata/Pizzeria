@@ -17,7 +17,6 @@ public class Precios {
             Map<String, Double> ingrediente,
             Map<String, Double> tamaño
     ) {
-        
         this.masa = masa;
         this.tipo = tipo;
         this.ingrediente = ingrediente;
@@ -34,11 +33,11 @@ public class Precios {
 
     public Double precioDeIngredientes(Set<String> ingredientesAsumar) {
         Double precioIngredientes = 0.00;
-        
+
         for (String ingrediente : ingredientesAsumar) {
-            precioIngredientes += this.ingrediente.get(ingrediente);            
+            precioIngredientes += this.ingrediente.get(ingrediente);
         }
-        
+
         return precioIngredientes;
     }
 

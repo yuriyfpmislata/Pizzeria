@@ -82,7 +82,7 @@ public class PizzeriaController implements Initializable {
 
     public void nombresYvaloresPorDefecto() {
         actualizandoNombres = true;
-        
+
         Precios precios = pizza.getPrecios();
         choiceTipo.setItems(FXCollections.observableArrayList(precios.tiposTipo()));
         listViewIngredientes.setItems(FXCollections.observableArrayList(precios.tiposIngrediente()));
@@ -93,7 +93,7 @@ public class PizzeriaController implements Initializable {
 
         // valores por defecto 
         radioNormal.setSelected(true);
-        
+
         actualizandoNombres = false;
     }
 
@@ -208,7 +208,6 @@ public class PizzeriaController implements Initializable {
 
             calcularPedidoPorDefecto();
         } catch (Exception e) {
-            System.out.println("catch cargarPrecios");
             if (e.getMessage() == null) {
                 System.err.println("El usuario pulsó en Cancelar o el archivo pasado no es válido");
             } else {

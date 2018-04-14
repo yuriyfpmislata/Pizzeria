@@ -15,52 +15,52 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pizzeria.PizzeriaController">
+<AnchorPane id="AnchorPane" prefHeight="435.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pizzeria.PizzeriaController">
    <children>
-      <ImageView fx:id="imageFondo" fitHeight="500.0" fitWidth="800.0" opacity="0.44">
+      <ImageView fx:id="imageFondo" fitHeight="500.0" fitWidth="800.0" opacity="0.6">
          <image>
             <Image url="@../images/pizza_tablecloth.gif" />
          </image>
       </ImageView>
       <Rectangle fx:id="rectanglePanelUsuario" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="182.0" layoutX="22.0" layoutY="11.0" stroke="#a8a8a8" strokeType="INSIDE" width="760.0" />
-      <RadioButton fx:id="radioNormal" layoutX="40.0" layoutY="65.0" mnemonicParsing="false" onAction="#accionMasa" text="Normal">
+      <RadioButton fx:id="radioNormal" layoutX="40.0" layoutY="61.0" mnemonicParsing="false" onAction="#accionMasa" text="Normal">
          <toggleGroup>
             <ToggleGroup fx:id="grupoRadiosMasa" />
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="radioIntegral" layoutX="40.0" layoutY="94.0" mnemonicParsing="false" onAction="#accionMasa" text="Integral" toggleGroup="$grupoRadiosMasa" />
-      <Label fx:id="labelMasa" layoutX="40.0" layoutY="19.0" text="Masa">
+      <Label fx:id="labelMasa" layoutX="40.0" layoutY="26.0" text="Masa">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Spinner fx:id="spinnerTamaño" layoutX="608.0" layoutY="56.0" onMouseClicked="#accionTamaño" />
-      <Label fx:id="labelTipo" layoutX="223.0" layoutY="19.0" text="Tipo">
+      <Spinner fx:id="spinnerTamaño" layoutX="608.0" layoutY="61.0" onMouseClicked="#accionTamaño" />
+      <Label fx:id="labelTipo" layoutX="223.0" layoutY="26.0" text="Tipo">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Label fx:id="labelIngredientes" layoutX="401.0" layoutY="20.0" text="Ingedientes extra ">
+      <Label fx:id="labelIngredientes" layoutX="397.0" layoutY="19.0" text="Ingedientes extra ">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Label fx:id="labelTamaño" layoutX="660.0" layoutY="20.0" text="Tamaño">
+      <Label fx:id="labelTamaño" layoutX="660.0" layoutY="26.0" text="Tamaño">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <ListView fx:id="listViewIngredientes" layoutX="339.0" layoutY="58.0" onMouseClicked="#accionIngredientes" prefHeight="103.0" prefWidth="218.0" />
-      <Label fx:id="labelConsejoIngredientes" layoutX="308.0" layoutY="37.0" prefHeight="17.0" prefWidth="282.0" text="(seleccionar varios manteniendo pulsado Control)" />
-      <Label fx:id="labelPedido" layoutX="38.0" layoutY="194.0" text="Pedido">
+      <ListView fx:id="listViewIngredientes" layoutX="347.0" layoutY="61.0" onMouseClicked="#accionIngredientes" prefHeight="103.0" prefWidth="218.0" />
+      <Label fx:id="labelConsejoIngredientes" layoutX="326.0" layoutY="40.0" prefHeight="17.0" prefWidth="282.0" text="(seleccionar varios manteniendo pulsado Control)" />
+      <Label fx:id="labelPedido" layoutX="22.0" layoutY="204.0" text="Pedido">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
       <ComboBox fx:id="choiceTipo" layoutX="161.0" layoutY="61.0" onAction="#accionTipo" prefWidth="150.0" />
-      <TextArea fx:id="textareaPedido" editable="false" layoutX="38.0" layoutY="222.0" prefHeight="200.0" prefWidth="671.0" />
+      <TextArea fx:id="textareaPedido" editable="false" layoutX="22.0" layoutY="232.0" prefHeight="200.0" prefWidth="688.0" />
       <ImageView fx:id="imgImprimirTicket" fitHeight="52.0" fitWidth="71.0" layoutX="731.0" layoutY="296.0" onMouseClicked="#imprimirTicket" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/save.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgCargarPrecios" fitHeight="52.0" fitWidth="71.0" layoutX="731.0" layoutY="432.0" onMouseClicked="#cargarPrecios" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgCargarPrecios" fitHeight="52.0" fitWidth="71.0" layoutX="731.0" layoutY="440.0" onMouseClicked="#cargarPrecios" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/database.png" />
          </image>
